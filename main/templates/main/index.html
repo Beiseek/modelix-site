@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelix - Воплощаем ваши идеи в 3D</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/media/services/modelix.png">
+    <link rel="apple-touch-icon" href="/media/services/modelix.png">
+    
+    <!-- SEO meta tags -->
+    <meta name="description" content="Modelix - комплексные 3D услуги в Санкт-Петербурге. Высокоточные принтеры FDM, SLA, SLM. Быстрое изготовление прототипов, функциональных деталей, декоративных изделий.">
+    <meta name="keywords" content="3D печать СПб, FDM, SLA, SLM, прототипирование, 3D принтер, изготовление деталей, 3D моделирование">
+    <meta name="author" content="Modelix">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Modelix - Воплощаем ваши идеи в 3D">
+    <meta property="og:description" content="Высокоточная 3D печать на современном оборудовании. FDM, SLA, SLM технологии.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    
+    <link rel="stylesheet" href="/static/css/styles.css?v=19.9">
+    <link rel="stylesheet" href="/static/css/mobile.css?v=14.1">
+    <link rel="stylesheet" href="/static/css/social-links-fixed.css?v=1.3">
+    <link rel="stylesheet" href="/static/css/animated-icons-fix.css?v=1.4">
+    <link rel="stylesheet" href="/static/css/hero-responsive.css?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fallback CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    
+    <!-- Структурированные данные -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Modelix",
+        "url": "/",
+        "email": "{{ contact_info.email }}",
+        "telephone": "{{ contact_info.phone|slice:'1:' }}",
+        "description": "Воплощаем ваши идеи в 3D на высокоточном оборудовании",
+        "founder": {
+            "@type": "Person",
+            "name": "{{ contact_info.owner_name }}"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- КРАСИВАЯ НАВИГАЦИЯ -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-container">
+            <div class="logo">
+            </div>
+            
+            <!-- Кнопка мобильного меню -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link" data-tooltip="Главная">Главная</a></li>
+                <li><a href="#about" class="nav-link" data-tooltip="О нас">О нас</a></li>
+                <li><a href="#technologies" class="nav-link" data-tooltip="Услуги">Услуги</a></li>
+                <li><a href="#portfolio" class="nav-link" data-tooltip="Портфолио">Портфолио</a></li>
+                <li><a href="javascript:void(0)" class="nav-link call-btn" data-tooltip="Заказать звонок" onclick="openCallModal()">Заказать звонок</a></li>
+            </ul>
+        </div>
+        
+        <!-- Кнопка переключения навигации -->
+        <button class="nav-toggle-btn" onclick="toggleNavPanel()" title="Скрыть/показать навигацию">
+            <div class="toggle-icon">
+                <span class="toggle-line toggle-line-1"></span>
+                <span class="toggle-line toggle-line-2"></span>
+                <span class="toggle-line toggle-line-3"></span>
+            </div>
+        </button>
+    </nav>
+    
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" onclick="closeMobileMenu()">&times;</div>
+        <div class="mobile-menu-content">
+            <a href="#hero" class="nav-link" onclick="closeMobileMenu()">Главная</a>
+            <a href="#about" class="nav-link" onclick="closeMobileMenu()">О нас</a>
+            <a href="#technologies" class="nav-link" onclick="closeMobileMenu()">Услуги</a>
+            <a href="#portfolio" class="nav-link" onclick="closeMobileMenu()">Портфолио</a>
+            <a href="javascript:void(0)" class="nav-link" onclick="openCallModal(); closeMobileMenu()">Заказать звонок</a>
+            <div class="mobile-contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:{{ contact_info.phone|slice:'1:' }}">{{ contact_info.phone }}</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>{{ contact_info.work_hours }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu-close" onclick="closeMobileMenu()">&times;</div>
+    </div>
+
+    <!-- Модальное окно заказа звонка -->
+    <div id="callModal" class="modal">
+        <div class="modal-content call-modal">
+            <span class="close" onclick="closeCallModal()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-phone modal-icon"></i>
+                <h3>Обсудим детали вашего проекта !</h3>
+            </div>
+            <form id="callForm" class="call-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Как вас зовут?" required class="call-input">
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Ваш номер телефона" required class="call-input">
+                </div>
+                <button type="submit" class="call-submit-btn">
+                    <i class="fas fa-phone"></i>
+                    Заказать звонок
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Блок 1: Героический блок -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <!-- Основной логотип -->
+            <div class="main-logo-section">
+                <div class="main-logo animated-entrance">
+                    <h1>Modelix</h1>
+                </div>
+            </div>
+
+            <!-- Основной контент блок -->
+            <div class="hero-content-card">
+                <div class="text-section">
+                    <div class="hero-text-content">
+                        <h2 class="hero-title">
+                            <span class="highlight-text">Воплощаем ваши идеи в 3D</span>
+                        </h2>
+                        
+                        <div class="about-company">
+                            <h3 class="gradient-title"><span class="modelix-brand">Modelix</span> — это полный цикл 3D-решений в Санкт-Петербурге</h3>
+                            <p class="description-text">Моделирование, печать любыми технологиями (FDM, SLA, SLS, SLM и др.), 3D-сканирование, реверс-инжиниринг и постобработка.</p>
+                            <p class="description-text">Мы превращаем ваши идеи в точные и качественные результаты — быстро, профессионально и с вниманием к деталям.</p>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <button class="cta-button" onclick="scrollToContactForm()">
+                                <span>ЗАКАЗАТЬ УСЛУГУ</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <p class="disclaimer-text">Работаем с юридическими и физическими лицами.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="image-section">
+                    <div class="social-links">
+                        {% for social in social_links %}
+                            <a href="{{ social.url }}" class="social-btn {{ social.platform }}" target="_blank" title="{{ social.get_platform_display }}">
+                                <i class="{{ social.get_icon_class }}"></i>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Интегрированное изображение принтера -->
+                    <div class="integrated-printer-block">
+                        <img src="/media/services/hero_block.png" alt="3D принтер" class="integrated-printer-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 2: О нас и преимущества -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Преимущества работы с нами</h2>
+            </div>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-cogs animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Решение задач любой сложности</h3>
+                        <p class="advantage-text">Мы берем на себя полный цикл работы: от идеи до готового результата. Если для реализации потребуется дополнительная технология или сервис, мы подключим проверенных партнёров и организуем процесс так, чтобы клиент получил решение «под ключ» без лишних забот.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-rocket animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Оптимизация процессов работы</h3>
+                        <p class="advantage-text">Мы выстраиваем работу так, чтобы каждый этап — от моделирования до постобработки — занимал минимум времени и ресурсов. Благодаря продуманным технологиям и автоматизации вы получаете результат быстрее и без лишних затрат.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-user-friends animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Индивидуальный подход к клиенту</h3>
+                        <p class="advantage-text">Каждый проект мы рассматриваем как уникальный. Мы внимательно изучаем задачу, учитываем все пожелания и подбираем оптимальные материалы, технологии и решения.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-handshake animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Прозрачность и честность работы</h3>
+                        <p class="advantage-text">Мы открыто обсуждаем сроки, стоимость и возможные ограничения. Клиент всегда понимает, что получает и за что платит.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-headset animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Высокий уровень сервиса и поддержки</h3>
+                        <p class="advantage-text">Консультируем на каждом этапе, помогаем выбрать оптимальное решение и остаёмся на связи даже после выполнения заказа.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card modern-card">
+                    <div class="advantage-icon modern-icon">
+                        <i class="fas fa-microchip animated-icon"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3 class="advantage-title">Современное оборудование и технологии</h3>
+                        <p class="advantage-text">Используем 3D-принтеры и сканеры нового поколения, что обеспечивает высокую точность, детализацию и скорость изготовления изделий.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Процесс работы -->
+            <div class="process-section">
+                <div class="process-header">
+                    <div class="process-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="process-info">
+                        <h3>Проект в оптимальные сроки</h3>
+                        <p>Мы выполняем любые заказы — будь то моделирование, печать, сканирование или постобработка — в оптимальные сроки. Для срочных проектов доступен ускоренный режим выполнения за дополнительную оплату.</p>
+                    </div>
+                </div>
+                
+                <div class="process-image">
+                    <div class="animated-printer-frame">
+                        <img src="/media/services/printer.jpg" alt="3D принтер в работе" class="process-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 3: Услуги -->
+    <section id="technologies" class="services-section-new">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши 3D-возможности</h2>
+            </div>
+            
+            <div class="services-grid-new">
+                <!-- 3D моделирование -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_modeling' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/3d_modeling.jpg" alt="3D моделирование">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_modeling' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                                <div class="service-expandable">
+                                    <button class="expand-btn" onclick="toggleServiceDetails('model1')">
+                                        Подробнее <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="service-details" id="model1" style="display: none;">
+                                        <p>{{ service.description }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <h3 class="service-name-new">3D моделирование</h3>
+                            <div class="service-expandable">
+                                <button class="expand-btn" onclick="toggleServiceDetails('model1')">
+                                    Подробнее <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="service-details" id="model1" style="display: none;">
+                                    <p>Создание детализированных 3D моделей. Создаём детализированные 3D-модели для различных целей. От концептуальных эскизов до готовых к печати моделей. Работаем с любыми форматами и требованиями к детализации.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- 3D печать -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_printing' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/3d_printing.jpg" alt="3D печать">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_printing' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                        <div class="service-expandable">
+                            <button class="expand-btn" onclick="toggleServiceDetails('tech1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="service-details" id="tech1" style="display: none;">
+                                        <p>{{ service.description }}</p>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <h3 class="service-name-new">3D печать</h3>
+                            <div class="service-expandable">
+                                <button class="expand-btn" onclick="toggleServiceDetails('tech1')">
+                                    Подробнее <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="service-details" id="tech1" style="display: none;">
+                                    <p>Современные технологии FDM, SLA, SLS, SLM. Изготавливаем изделия с применением FDM, SLA, SLS, SLM и других технологий. FDM подходит для прототипов, SLA обеспечивает высокую детализацию, а SLS и SLM позволяют печатать прочные детали.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- 3D сканирование -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_scanning' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/3d_scanning.jpg" alt="3D сканирование">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == '3d_scanning' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                        <div class="service-expandable">
+                                    <button class="expand-btn" onclick="toggleServiceDetails('scan1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                                    <div class="service-details" id="scan1" style="display: none;">
+                                        <p>{{ service.description }}</p>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <h3 class="service-name-new">3D сканирование</h3>
+                            <div class="service-expandable">
+                                <button class="expand-btn" onclick="toggleServiceDetails('scan1')">
+                                    Подробнее <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="service-details" id="scan1" style="display: none;">
+                                    <p>Высокоточное сканирование объектов. Оцифровываем объекты любой формы и сложности. Технология используется для анализа геометрии, архивации и подготовки моделей к редактированию или печати.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Реверс-инжиниринг -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'reverse_engineering' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/reverse_engineering.jpg" alt="Реверс-инжиниринг">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'reverse_engineering' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                        <div class="service-expandable">
+                            <button class="expand-btn" onclick="toggleServiceDetails('rev1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="service-details" id="rev1" style="display: none;">
+                                        <p>{{ service.description|default:'Воссоздание моделей по готовым изделиям. Создаём точные 3D-модели по готовым объектам. Эта услуга нужна для восстановления редких деталей, модернизации изделий и адаптации их под новые задачи.' }}</p>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                        <h3 class="service-name-new">Реверс-инжиниринг</h3>
+                        <div class="service-expandable">
+                                <button class="expand-btn" onclick="toggleServiceDetails('rev1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                                <div class="service-details" id="rev1" style="display: none;">
+                                    <p>Воссоздание моделей по готовым изделиям. Создаём точные 3D-модели по готовым объектам. Эта услуга нужна для восстановления редких деталей, модернизации изделий и адаптации их под новые задачи.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Инжиниринг -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'engineering' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/engineering.jpg" alt="Инжиниринг">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'engineering' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                                <div class="service-expandable">
+                                    <button class="expand-btn" onclick="toggleServiceDetails('eng1')">
+                                        Подробнее <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="service-details" id="eng1" style="display: none;">
+                                        <p>{{ service.description|default:'Комплексный инжиниринг от проекта до реализации. Разрабатываем техническую документацию, создаем 3D модели, проводим расчеты и оптимизацию конструкций.' }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                        <h3 class="service-name-new">Инжиниринг</h3>
+                        <div class="service-expandable">
+                                <button class="expand-btn" onclick="toggleServiceDetails('eng1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                                <div class="service-details" id="eng1" style="display: none;">
+                                    <p>Комплексный инжиниринг от проекта до реализации. Разрабатываем техническую документацию, создаем 3D модели, проводим расчеты и оптимизацию конструкций.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                <!-- Постобработка -->
+                <div class="service-card-new">
+                    <div class="service-image-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'post_processing' %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                            <img src="/media/services/post_processing.jpg" alt="Постобработка">
+                        {% endif %}
+                    </div>
+                    <div class="service-content-new">
+                        {% for service in services %}
+                            {% if service.service_type == 'post_processing' %}
+                                <h3 class="service-name-new">{{ service.title }}</h3>
+                                <div class="service-expandable">
+                                    <button class="expand-btn" onclick="toggleServiceDetails('post1')">
+                                        Подробнее <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="service-details" id="post1" style="display: none;">
+                                        <p>{{ service.description|default:'Финишная обработка готовых изделий. Шлифовка, покраска, склеивание и другие виды постобработки для придания изделиям товарного вида и улучшения их свойств.' }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not services %}
+                        <h3 class="service-name-new">Постобработка</h3>
+                        <div class="service-expandable">
+                            <button class="expand-btn" onclick="toggleServiceDetails('post1')">
+                                Подробнее <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="service-details" id="post1" style="display: none;">
+                                    <p>Финишная обработка готовых изделий. Шлифовка, покраска, склеивание и другие виды постобработки для придания изделиям товарного вида и улучшения их свойств.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 5: Как мы работаем -->
+    <section class="workflow-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Как мы работаем</h2>
+            </div>
+            
+            <div class="workflow-steps-new">
+                <div class="workflow-step-new" data-step="1">
+                    <div class="step-progress-circle">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="50" stroke="#e2e8f0" stroke-width="8" fill="none"></circle>
+                                <circle class="progress-bar" cx="60" cy="60" r="50" stroke="#191970" stroke-width="8" fill="none" 
+                                        stroke-dasharray="314" stroke-dashoffset="251" stroke-linecap="round"></circle>
+                            </svg>
+                            <div class="step-icon-new">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                        </div>
+                        <div class="step-number">25%</div>
+                    </div>
+                    <div class="step-content-new">
+                        <h3>Согласование</h3>
+                        <p>Мы обсуждаем задачу, уточняем все детали и подбираем оптимальное решение. На этом этапе фиксируем ваши пожелания и согласовываем формат работы.</p>
+                    </div>
+                </div>
+                
+                <div class="workflow-step-new" data-step="2">
+                    <div class="step-progress-circle">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="50" stroke="#e2e8f0" stroke-width="8" fill="none"></circle>
+                                <circle class="progress-bar" cx="60" cy="60" r="50" stroke="#191970" stroke-width="8" fill="none" 
+                                        stroke-dasharray="314" stroke-dashoffset="157" stroke-linecap="round"></circle>
+                            </svg>
+                            <div class="step-icon-new">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                        </div>
+                        <div class="step-number">50%</div>
+                    </div>
+                    <div class="step-content-new">
+                        <h3>Просчёт стоимости<br>и сроков</h3>
+                        <p>После согласования готовим прозрачный расчёт цены и сроков. Вы заранее знаете стоимость и дату готовности результата без скрытых доплат.</p>
+                    </div>
+                </div>
+                
+                <div class="workflow-step-new" data-step="3">
+                    <div class="step-progress-circle">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="50" stroke="#e2e8f0" stroke-width="8" fill="none"></circle>
+                                <circle class="progress-bar" cx="60" cy="60" r="50" stroke="#191970" stroke-width="8" fill="none" 
+                                        stroke-dasharray="314" stroke-dashoffset="78" stroke-linecap="round"></circle>
+                            </svg>
+                            <div class="step-icon-new">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                        </div>
+                        <div class="step-number">75%</div>
+                    </div>
+                    <div class="step-content-new">
+                        <h3>Оплата</h3>
+                        <p>Когда условия утверждены, принимаем оплату удобным способом и сразу приступаем к работе. Все договорённости фиксируются, чтобы вы были уверены в результате.</p>
+                    </div>
+                </div>
+                
+                <div class="workflow-step-new" data-step="4">
+                    <div class="step-progress-circle">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="50" stroke="#e2e8f0" stroke-width="8" fill="none"></circle>
+                                <circle class="progress-bar" cx="60" cy="60" r="50" stroke="#191970" stroke-width="8" fill="none" 
+                                        stroke-dasharray="314" stroke-dashoffset="0" stroke-linecap="round"></circle>
+                            </svg>
+                            <div class="step-icon-new">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="step-number">100%</div>
+                    </div>
+                    <div class="step-content-new">
+                        <h3 style="white-space: nowrap !important;">Получение результата</h3>
+                        <p>Вы получаете готовый результат в согласованные сроки. Детали можем отправить курьером или подготовить к самовывозу, а 3D-файлы отправить удобным для вас образом.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item modern-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">лет опыта</div>
+                </div>
+                
+                <div class="stat-item modern-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">материалов на выбор</div>
+                </div>
+                
+                <div class="stat-item modern-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">технологии печати</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 5: Форма заявки -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h2>ОСТАВЬТЕ ЗАЯВКУ</h2>
+                <p>И мы быстро просчитаем стоимость и сроки выполнения вашего заказа.</p>
+            </div>
+            
+            <div class="contact-content">
+                <form id="orderForm" class="order-form">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Имя:" required class="form-input">
+                        <input type="tel" name="phone" placeholder="Телефон:" required class="form-input">
+                        <input type="email" name="email" placeholder="E-mail:" required class="form-input">
+                    </div>
+                    
+                    <div class="form-row">
+                        <textarea name="message" placeholder="Сообщение:" class="form-textarea"></textarea>
+                        
+                        <div class="file-upload">
+                            <input type="file" name="file" id="fileInput" accept=".stl,.obj,.3mf,.step,.iges">
+                            <label for="fileInput" class="file-label">
+                                <i class="fas fa-upload"></i>
+                                <span>Прикрепить файл</span>
+                                <small>Можно отправить любую фотографию модели или 3D файл</small>
+                            </label>
+                        </div>
+                        
+                        <button type="button" class="submit-btn enhanced-submit" onclick="submitOrderForm(event)">
+                            <i class="fas fa-paper-plane"></i>
+                            ЗАКАЗАТЬ УСЛУГУ
+                        </button>
+                    </div>
+                    
+                    <div class="additional-service">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <span class="service-text">Можем помочь с покупкой трёхмерных моделей</span>
+                        </div>
+                    </div>
+                </form>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 6: Портфолио -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши работы</h2>
+            </div>
+            
+            <div class="portfolio-slider">
+                <div class="portfolio-track">
+                    {% for item in portfolio_items %}
+                    <div class="portfolio-item">
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    </div>
+                    {% empty %}
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl1.jpg" alt="Работа 1">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl2.jpg" alt="Работа 2">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl3.jpg" alt="Работа 3">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl4.jpg" alt="Работа 4">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl5.jpg" alt="Работа 5">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl6.jpg" alt="Работа 6">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl7.jpeg" alt="Работа 7">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/media/portfolio/portfl8.jpg" alt="Работа 8">
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn" onclick="prevSlideManual()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn" onclick="nextSlideManual()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="slider-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                    <span class="dot" onclick="goToSlide(5)"></span>
+                    <span class="dot" onclick="goToSlide(6)"></span>
+                    <span class="dot" onclick="goToSlide(7)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 7: FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+            </div>
+            
+            <div class="faq-container-new">
+                {% for faq in faq_items %}
+                <div class="faq-item-new">
+                    <button class="faq-question-new" onclick="toggleFAQNew('faq_new_{{ faq.id }}')">
+                        <span>{{ faq.question }}</span>
+                        <i class="fas fa-plus faq-icon-new"></i>
+                    </button>
+                    <div id="faq_new_{{ faq.id }}" class="faq-answer-new">
+                        <p>{{ faq.answer }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <!-- FAQ будут добавлены через админку -->
+                <div class="faq-item-new">
+                    <p style="text-align: center; color: #666; padding: 20px;">
+                        Вопросы и ответы будут добавлены через админку
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Modelix</span>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">{{ contact_info.phone }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">{{ contact_info.email }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">Часы работы: ПН-ПТ</span>
+                    </div>
+                    <div class="contact-item" style="padding-left: 45px !important; margin-bottom: 0px !important; margin-top: -8px !important;">
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">10:00-20:00</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">{{ contact_info.owner_name }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-id-card"></i>
+                        <span style="font-size: 16px !important; font-weight: 700 !important;">ИНН {{ contact_info.inn }}</span>
+                    </div>
+                </div>
+                
+                <div class="footer-social">
+                    <div class="social-icons-row">
+                        {% for social in social_links %}
+                            <a href="{{ social.url }}" class="social-link {{ social.platform }}-link" title="{{ social.get_platform_display }}" target="_blank">
+                                <i class="{{ social.get_icon_class }}"></i>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Modelix. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-cube modal-icon"></i>
+                <h3>Контактная информация</h3>
+            </div>
+            <div class="modal-contacts">
+                <div class="modal-contact">
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-details">
+                        <span class="contact-label">Телефон:</span>
+                        <a href="tel:{{ contact_info.phone }}" class="contact-value">{{ contact_info.phone }}</a>
+                    </div>
+                </div>
+                <div class="modal-contact">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-details">
+                        <span class="contact-label">Почта:</span>
+                        <a href="mailto:{{ contact_info.email }}" class="contact-value">{{ contact_info.email }}</a>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <a href="tel:{{ contact_info.phone }}" class="modal-btn phone-btn">
+                        <i class="fas fa-phone"></i>
+                        Позвонить
+                    </a>
+                    <a href="mailto:{{ contact_info.email }}" class="modal-btn email-btn">
+                        <i class="fas fa-envelope"></i>
+                        Написать
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Notification -->
+    <div id="scrollNotification" class="scroll-notification">
+        <div class="notification-content">
+            <i class="fas fa-info-circle"></i>
+            <span>Пролистайте вниз, чтобы увидеть больше!</span>
+        </div>
+        <button class="close-notification">&times;</button>
+    </div>
+
+    <!-- Модальное окно материалов -->
+    <div id="materialsModal" onclick="this.style.display='none'" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 99999; justify-content: center; align-items: center;">
+        <div onclick="event.stopPropagation()" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; max-height: 80%; overflow-y: auto; position: relative;">
+            <button onclick="document.getElementById('materialsModal').style.display='none'" style="position: absolute; top: 15px; right: 20px; background: #ff4444; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; font-weight: bold;">×</button>
+            
+            <h2 style="text-align: center; color: #0ea5e9; margin: 0 0 30px 0; font-size: 28px;">Доступные материалы</h2>
+            
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #0ea5e9; margin: 0 0 15px 0; font-size: 20px; border-bottom: 2px solid #0ea5e9; padding-bottom: 8px;">🖨️ FDM пластики</h3>
+                <ul style="color: #333; line-height: 2; font-size: 16px; margin: 0; padding-left: 20px;">
+                    <li><strong>PLA</strong> - экологичный, простой в использовании</li>
+                    <li><strong>ABS</strong> - прочный, термостойкий</li>
+                    <li><strong>PETG</strong> - химически стойкий, прозрачный</li>
+                    <li><strong>TPU</strong> - гибкий, эластичный</li>
+                    <li><strong>Wood Fill</strong> - с древесными волокнами</li>
+                    <li><strong>Carbon Fiber</strong> - армированный углеволокном</li>
+                    <li><strong>Metal Fill</strong> - с металлическими частицами</li>
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #0ea5e9; margin: 0 0 15px 0; font-size: 20px; border-bottom: 2px solid #0ea5e9; padding-bottom: 8px;">🧪 SLA смолы</h3>
+                <ul style="color: #333; line-height: 2; font-size: 16px; margin: 0; padding-left: 20px;">
+                    <li><strong>Standard</strong> - универсальная смола</li>
+                    <li><strong>Tough</strong> - повышенная прочность</li>
+                    <li><strong>Flexible</strong> - гибкая смола</li>
+                    <li><strong>Clear</strong> - прозрачная</li>
+                    <li><strong>Dental</strong> - биосовместимая</li>
+                    <li><strong>Castable</strong> - для литья</li>
+                    <li><strong>High Temp</strong> - термостойкая</li>
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #0ea5e9; margin: 0 0 15px 0; font-size: 20px; border-bottom: 2px solid #0ea5e9; padding-bottom: 8px;">⚙️ SLM металлы</h3>
+                <ul style="color: #333; line-height: 2; font-size: 16px; margin: 0; padding-left: 20px;">
+                    <li><strong>Stainless Steel</strong> - нержавеющая сталь</li>
+                    <li><strong>Titanium</strong> - титановый сплав</li>
+                    <li><strong>Aluminum</strong> - алюминиевый сплав</li>
+                    <li><strong>Inconel</strong> - жаропрочный сплав</li>
+                    <li><strong>Maraging Steel</strong> - мартенситно-стареющая сталь</li>
+                    <li><strong>Cobalt Chrome</strong> - кобальт-хромовый сплав</li>
+                    <li><strong>Tool Steel</strong> - инструментальная сталь</li>
+                </ul>
+            </div>
+            
+            <button onclick="document.getElementById('materialsModal').style.display='none'" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 18px; font-weight: 600;">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function showContacts(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            var dropdown = document.getElementById('contactDropdown');
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+                console.log('Показываю контакты');
+            } else {
+                dropdown.style.display = 'none';
+                console.log('Скрываю контакты');
+            }
+        }
+        
+        // Функция для скролла к форме заявки
+        function scrollToContactForm() {
+            var contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                console.log('Переход к форме заявки');
+            }
+        }
+        
+        // Функция отправки формы заказа
+        function submitOrderForm(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            console.log('Функция submitOrderForm вызвана');
+            
+            var form = document.getElementById('orderForm');
+            var submitBtn = document.querySelector('.submit-btn');
+            var originalText = submitBtn.innerHTML;
+            
+            // Получаем данные формы
+            var name = form.querySelector('input[name="name"]').value.trim();
+            var phone = form.querySelector('input[name="phone"]').value.trim();
+            var email = form.querySelector('input[name="email"]').value.trim();
+            var message = form.querySelector('textarea[name="message"]').value.trim();
+            var fileInput = form.querySelector('input[name="file"]');
+            
+            console.log('Данные формы:', {name, phone, email, message, file: fileInput.files[0]});
+            
+            // Проверяем обязательные поля
+            if (!name || !phone || !email) {
+                alert('Заполните все обязательные поля: Имя, Телефон, E-mail');
+                return;
+            }
+            
+            // Показываем состояние загрузки
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ОТПРАВКА...';
+            submitBtn.disabled = true;
+            
+            // Создаем FormData
+            var formData = new FormData();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('message', message);
+            if (fileInput.files[0]) {
+                formData.append('file', fileInput.files[0]);
+            }
+            
+            // Добавляем CSRF токен
+            var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            formData.append('csrfmiddlewaretoken', csrfToken);
+            
+            console.log('Отправляем данные на сервер...');
+            
+            // Отправляем данные
+            fetch('/submit-order/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                console.log('Ответ получен:', response.status);
+                return response.json();
+            })
+            .then(function(data) {
+                console.log('Данные ответа:', data);
+                if (data.success) {
+                    alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+                    form.reset();
+                    var fileLabel = document.querySelector('.file-label span');
+                    if (fileLabel) {
+                        fileLabel.textContent = 'Прикрепить файл';
+                    }
+                } else {
+                    alert(data.error || 'Произошла ошибка при отправке заявки');
+                }
+            })
+            .catch(function(error) {
+                console.error('Ошибка при отправке:', error);
+                alert('Произошла ошибка при отправке заявки');
+            })
+            .finally(function() {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+        
+        // Слайдер портфолио
+        var currentSlideIndex = 0;
+        var totalSlides = document.querySelectorAll('.portfolio-item').length;
+        
+        function updateSlider() {
+            var track = document.querySelector('.portfolio-track');
+            var dots = document.querySelectorAll('.slider-dots .dot');
+            
+            if (track) {
+                track.style.transform = 'translateX(' + (-currentSlideIndex * 100) + '%)';
+            }
+            
+            dots.forEach(function(dot, index) {
+                if (index === currentSlideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextSlideManual() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+            } else {
+                currentSlideIndex = 0;
+            }
+            updateSlider();
+            console.log('Следующий слайд:', currentSlideIndex);
+        }
+        
+        function prevSlideManual() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+            } else {
+                currentSlideIndex = totalSlides - 1;
+            }
+            updateSlider();
+            console.log('Предыдущий слайд:', currentSlideIndex);
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlider();
+            console.log('Переход к слайду:', index);
+        }
+        
+        // ИСПРАВЛЕННАЯ функция FAQ
+        function toggleFAQ(faqId) {
+            console.log('==== КЛИК FAQ:', faqId, '====');
+            
+            // Получаем элемент
+            var element = document.getElementById(faqId);
+            if (!element) {
+                console.log('ОШИБКА: элемент не найден:', faqId);
+                return;
+            }
+            
+            console.log('Элемент найден:', element);
+            console.log('Текущий display:', element.style.display);
+            
+            // Проверяем текущее состояние
+            var isCurrentlyVisible = (element.style.display === 'block');
+            console.log('Сейчас видим?', isCurrentlyVisible);
+            
+            // ПРИНУДИТЕЛЬНО закрываем ВСЕ FAQ с отладкой
+            console.log('=== ЗАКРЫВАЮ ВСЕ FAQ ===');
+            var faq1 = document.getElementById('faq_1');
+            var faq2 = document.getElementById('faq_2');
+            var faq3 = document.getElementById('faq_3');
+            var faq4 = document.getElementById('faq_4');
+            var faq5 = document.getElementById('faq_5');
+            var faq6 = document.getElementById('faq_6');
+            
+            if (faq1) { faq1.style.display = 'none'; console.log('Закрыл faq_1'); }
+            if (faq2) { faq2.style.display = 'none'; console.log('Закрыл faq_2'); }
+            if (faq3) { faq3.style.display = 'none'; console.log('Закрыл faq_3'); }
+            if (faq4) { faq4.style.display = 'none'; console.log('Закрыл faq_4'); }
+            if (faq5) { faq5.style.display = 'none'; console.log('Закрыл faq_5'); }
+            if (faq6) { faq6.style.display = 'none'; console.log('Закрыл faq_6'); }
+            
+            // Если НЕ был виден - показываем ТОЛЬКО его
+            if (!isCurrentlyVisible) {
+                element.style.display = 'block';
+                console.log('=== ПОКАЗАЛ ТОЛЬКО:', faqId, '===');
+            } else {
+                console.log('=== ОСТАВИЛ ЗАКРЫТЫМ:', faqId, '===');
+            }
+        }
+        
+        // НОВЫЕ ПРОСТЫЕ функции для материалов
+        function openMaterialsModal() {
+            console.log('ОТКРЫВАЮ МОДАЛЬНОЕ ОКНО');
+            var modal = document.getElementById('materialsModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                console.log('Модальное окно показано');
+            } else {
+                alert('МОДАЛЬНОЕ ОКНО НЕ НАЙДЕНО!');
+            }
+        }
+        
+        function closeMaterialsModal() {
+            console.log('ЗАКРЫВАЮ МОДАЛЬНОЕ ОКНО');
+            var modal = document.getElementById('materialsModal');
+            if (modal) {
+                modal.style.display = 'none';
+                console.log('Модальное окно скрыто');
+            }
+        }
+        
+        // Тестовая функция для материалов
+        function showMaterials123() {
+            console.log('ФУНКЦИЯ ВЫЗВАНА!');
+            alert('ФУНКЦИЯ РАБОТАЕТ!');
+            
+            var materialsList = document.getElementById('materials-list');
+            console.log('Элемент найден:', materialsList);
+            
+            if (materialsList) {
+                materialsList.style.display = 'block';
+                materialsList.style.background = 'yellow';
+                materialsList.style.border = '5px solid red';
+                console.log('ПОКАЗЫВАЮ СПИСОК МАТЕРИАЛОВ');
+            } else {
+                alert('ЭЛЕМЕНТ НЕ НАЙДЕН!');
+            }
+        }
+        
+        // Закрытие списка материалов при клике вне блока
+        document.addEventListener('click', function(e) {
+            var materialsList = document.getElementById('materials-list');
+            var materialsButton = e.target.closest('[onclick*="toggleMaterialsList"]');
+            
+            if (materialsList && !materialsButton && !materialsList.contains(e.target)) {
+                materialsList.style.display = 'none';
+            }
+        });
+        
+        // Функция для диагностики FAQ
+        function debugFAQ() {
+            var allFAQ = document.querySelectorAll('.faq-item');
+            console.log('Всего FAQ элементов:', allFAQ.length);
+            
+            allFAQ.forEach(function(item, index) {
+                var question = item.querySelector('.faq-question span');
+                var answer = item.querySelector('.faq-answer p');
+                console.log('FAQ ' + index + ':');
+                console.log('  Вопрос:', question ? question.textContent : 'НЕТ');
+                console.log('  Ответ:', answer ? answer.textContent : 'НЕТ');
+                console.log('  Ответ видим:', answer ? getComputedStyle(answer).display : 'НЕТ');
+                console.log('  Цвет текста:', answer ? getComputedStyle(answer).color : 'НЕТ');
+            });
+        }
+        
+        // Принудительно показать все FAQ
+        function forceShowAllFAQ() {
+            var allAnswers = document.querySelectorAll('.faq-answer');
+            allAnswers.forEach(function(answer) {
+                answer.style.display = 'block !important';
+                answer.style.visibility = 'visible !important';
+                answer.style.opacity = '1 !important';
+                answer.style.height = 'auto !important';
+                answer.style.maxHeight = 'none !important';
+                
+                var p = answer.querySelector('p');
+                if (p) {
+                    p.style.color = 'red !important';
+                    p.style.fontSize = '20px !important';
+                    p.style.fontWeight = 'bold !important';
+                    p.style.backgroundColor = 'yellow !important';
+                    p.style.padding = '20px !important';
+                    p.style.margin = '0 !important';
+                    p.style.border = '3px solid black !important';
+                }
+            });
+            console.log('Принудительно показал все FAQ');
+        }
+        
+        // Функция для раскрытия деталей услуг с плавным закрытием
+        function toggleServiceDetails(serviceId) {
+            var details = document.getElementById(serviceId);
+            var btn = event.target;
+            
+            if (details.style.display === 'none' || details.style.display === '') {
+                // Открываем
+                details.style.display = 'block';
+                details.classList.remove('closing');
+                btn.classList.add('active');
+            } else {
+                // Закрываем с анимацией
+                details.classList.add('closing');
+                btn.classList.remove('active');
+                
+                // Скрываем после завершения анимации
+                setTimeout(function() {
+                    details.style.display = 'none';
+                    details.classList.remove('closing');
+                }, 300);
+            }
+        }
+
+        // Функция для нового FAQ
+        function toggleFAQNew(faqId) {
+            // Находим элемент FAQ
+            var faqElement = document.getElementById(faqId);
+            var faqItem = faqElement.closest('.faq-item-new');
+            
+            // Закрываем все остальные FAQ
+            var allFaqItems = document.querySelectorAll('.faq-item-new');
+            allFaqItems.forEach(function(item) {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Переключаем текущий FAQ
+            faqItem.classList.toggle('active');
+        }
+
+        // Функции для модального окна заказа звонка
+        function openCallModal() {
+            document.getElementById('callModal').style.display = 'block';
+        }
+        
+        function closeCallModal() {
+            document.getElementById('callModal').style.display = 'none';
+        }
+        
+        // Обработка формы заказа звонка
+        document.getElementById('callForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = new FormData(this);
+            
+            fetch('/submit-call-request/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    closeCallModal();
+                    document.getElementById('callForm').reset();
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке заявки');
+            });
+        });
+        
+        // Закрытие модальных окон при клике вне их
+        window.onclick = function(event) {
+            var callModal = document.getElementById('callModal');
+            if (event.target === callModal) {
+                closeCallModal();
+            }
+        }
+        
+        // Вызываем диагностику при загрузке
+        setTimeout(function() {
+            debugFAQ();
+            forceShowAllFAQ();
+        }, 1000);
+        
+        // Закрытие при клике вне блока
+        document.addEventListener('click', function(e) {
+            var dropdown = document.getElementById('contactDropdown');
+            var container = document.querySelector('.contact-dropdown-container');
+            if (dropdown && container && !container.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+        
+        // Функция мобильного меню
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            navMenu.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+        
+        // Закрытие мобильного меню
+        function closeMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            navMenu.classList.remove('active');
+            menuBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+        
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.querySelector('.nav-menu');
+                const menuBtn = document.querySelector('.mobile-menu-btn');
+                
+                navMenu.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
+        });
+        
+        // Закрытие мобильного меню при клике вне его
+        document.addEventListener('click', function(e) {
+            const navMenu = document.querySelector('.nav-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (navMenu && menuBtn && navContainer && 
+                !navContainer.contains(e.target) && 
+                navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuBtn.classList.remove('active');
+            }
+        });
+        
+        // Функция переключения панели навигации
+        function toggleNavPanel() {
+            const navContainer = document.querySelector('.nav-container');
+            const toggleBtn = document.querySelector('.nav-toggle-btn');
+            
+            if (navContainer && toggleBtn) {
+                navContainer.classList.toggle('hidden');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+    </script>
+    <script src="/static/js/main.js?v=1.1"></script>
+    <script src="/static/js/hero-responsive.js?v=1.0"></script>
+    
+</body>
+</html>
