@@ -1,0 +1,298 @@
+/* АДАПТИВНОСТЬ ТОЛЬКО ДЛЯ ПЕРВОГО БЛОКА (HERO-SECTION) */
+/* Эти правила применяются только к hero-section и не влияют на другие секции */
+
+/* ========================================
+   СОЦИАЛЬНЫЕ ИКОНКИ В HERO-SECTION
+======================================== */
+
+/* Базовое позиционирование для больших экранов */
+.hero-section .social-links,
+.hero-content-card .image-section .social-links,
+div.image-section .social-links {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    gap: 12px !important;
+    z-index: 1000 !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+}
+
+/* Адаптивное позиционирование через viewport units */
+@media (max-width: 1400px) {
+    .hero-section .social-links,
+    .hero-content-card .image-section .social-links,
+    div.image-section .social-links {
+        right: 15px !important;
+        top: 15px !important;
+        gap: 10px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-section .social-links,
+    .hero-content-card .image-section .social-links,
+    div.image-section .social-links {
+        right: 10px !important;
+        top: 10px !important;
+        gap: 8px !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .hero-section .social-links,
+    .hero-content-card .image-section .social-links,
+    div.image-section .social-links {
+        right: 5px !important;
+        top: 5px !important;
+        gap: 6px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section .social-links,
+    .hero-content-card .image-section .social-links,
+    div.image-section .social-links {
+        position: static !important;
+        justify-content: center !important;
+        margin: 20px auto !important;
+        width: 100% !important;
+        gap: 15px !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+    }
+}
+
+/* Размеры кнопок социальных сетей в hero-section */
+.hero-section .social-links .social-btn {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+@media (max-width: 768px) {
+    .hero-section .social-links .social-btn {
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section .social-links .social-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* ========================================
+   ИЗОБРАЖЕНИЕ PERVBLOK В HERO-SECTION
+======================================== */
+
+/* Адаптивные размеры для изображения pervblok в hero-section */
+.hero-section .portfolio-item img[src*="pervblok"],
+.hero-content-card .image-section img[src*="pervblok"] {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    border-radius: 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Адаптивные размеры через viewport units для hero-section */
+.hero-section .portfolio-item img[src*="pervblok"],
+.hero-content-card .image-section img[src*="pervblok"] {
+    max-height: 50vh !important; /* 50% от высоты экрана */
+}
+
+@media (max-width: 1400px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 45vh !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 40vh !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 35vh !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 30vh !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 25vh !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section .portfolio-item img[src*="pervblok"],
+    .hero-content-card .image-section img[src*="pervblok"] {
+        max-height: 20vh !important;
+    }
+}
+
+/* ========================================
+   ОБЩИЕ УЛУЧШЕНИЯ АДАПТИВНОСТИ HERO-SECTION
+======================================== */
+
+/* Улучшенная адаптивность контейнера hero-section */
+.hero-section .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 15px !important;
+}
+
+@media (max-width: 768px) {
+    .hero-section .container {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Адаптивная сетка для hero-content-card */
+.hero-section .hero-content-card {
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+.hero-section .hero-content-card .image-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.hero-section .hero-content-card .image-section .portfolio-item {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 10px !important;
+}
+
+@media (max-width: 768px) {
+    .hero-section .hero-content-card .image-section .portfolio-item {
+        padding: 0 5px !important;
+    }
+}
+
+/* ========================================
+   ПРИНУДИТЕЛЬНЫЕ ПРАВИЛА ДЛЯ ПЕРЕОПРЕДЕЛЕНИЯ
+======================================== */
+
+/* Максимальная специфичность для переопределения всех других правил */
+html body .hero-section .hero-content-card .image-section .social-links,
+html body .hero-section div.image-section div.social-links,
+html body .hero-section .social-links {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    gap: 12px !important;
+    z-index: 1000 !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+}
+
+/* Принудительные правила для изображения pervblok в hero-section */
+html body .hero-section .portfolio-item img[src*="pervblok"],
+html body .hero-section .image-section img[src*="pervblok"] {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 50vh !important;
+    object-fit: contain !important;
+}
+
+/* Медиа-запросы с максимальной специфичностью для hero-section */
+@media (max-width: 768px) {
+    html body .hero-section .hero-content-card .image-section .social-links,
+    html body .hero-section div.image-section div.social-links,
+    html body .hero-section .social-links {
+        position: static !important;
+        justify-content: center !important;
+        margin: 20px auto !important;
+        width: 100% !important;
+        gap: 15px !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+    }
+    
+    html body .hero-section .portfolio-item img[src*="pervblok"],
+    html body .hero-section .image-section img[src*="pervblok"] {
+        max-height: 25vh !important;
+    }
+}
+
+/* ПРИНУДИТЕЛЬНЫЕ СТИЛИ ДЛЯ ТЕКСТА В HERO-SECTION - МАКСИМАЛЬНАЯ СПЕЦИФИЧНОСТЬ */
+@media (max-width: 768px) {
+    html body .hero-section .about-company {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    html body .hero-section .about-company .gradient-title {
+        font-size: 1.1rem !important;
+        text-align: justify !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 0 20px 0 !important;
+    }
+    
+    html body .hero-section .about-company .description-text {
+        font-size: 0.85rem !important;
+        text-align: justify !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    html body .hero-section .about-company .hero-title {
+        text-align: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    html body .hero-section .about-company .modelix-brand {
+        font-size: 1.1em !important;
+    }
+}
+
+
+
+
+

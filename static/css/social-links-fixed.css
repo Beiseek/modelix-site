@@ -1,0 +1,150 @@
+/* ПРИНУДИТЕЛЬНАЯ ФИКСАЦИЯ ПОЗИЦИОНИРОВАНИЯ СОЦИАЛЬНЫХ ССЫЛОК */
+/* ЭТОТ ФАЙЛ ОБЕСПЕЧИВАЕТ МАКСИМАЛЬНЫЙ ПРИОРИТЕТ ПОЗИЦИОНИРОВАНИЯ */
+
+/* МАКСИМАЛЬНО СПЕЦИФИЧНЫЕ СЕЛЕКТОРЫ */
+html body .hero-content-card .image-section .social-links,
+html body div.image-section div.social-links,
+html body .hero-section .social-links,
+html body .social-links {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: -5px !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    left: 105px !important;
+    top: 0px !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    display: flex !important;
+    gap: 16px !important;
+    z-index: 10 !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+/* БЛОКИРОВКА ВСЕХ ВОЗМОЖНЫХ ИЗМЕНЕНИЙ */
+html body .social-links * {
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ФИКСАЦИЯ КНОПОК */
+html body .social-links .social-btn,
+html body .social-btn {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    transform: none !important;
+}
+
+/* ЭКСТРЕННЫЕ ПРАВИЛА НА СЛУЧАЙ КОНФЛИКТОВ */
+.social-links[style] {
+    left: 105px !important;
+    position: relative !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ - ОТКЛЮЧЕНИЕ ПРИНУДИТЕЛЬНОГО ПОЗИЦИОНИРОВАНИЯ */
+@media (max-width: 768px) {
+    /* СБРОС ВСЕХ ПРИНУДИТЕЛЬНЫХ ПРАВИЛ НА МОБИЛЬНЫХ */
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: auto !important;
+        position: static !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* СБРОС ПРИНУДИТЕЛЬНЫХ ПРАВИЛ ДЛЯ КНОПОК НА МОБИЛЬНЫХ */
+    html body .social-links .social-btn,
+    html body .social-btn {
+        width: 48px !important;
+        height: 48px !important;
+        margin: 0 8px !important;
+    }
+    
+    /* СБРОС ЭКСТРЕННЫХ ПРАВИЛ НА МОБИЛЬНЫХ */
+    .social-links[style] {
+        left: auto !important;
+        position: static !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* ПЛАНШЕТНАЯ АДАПТАЦИЯ */
+@media (max-width: 1024px) and (min-width: 769px) {
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: 30px !important;
+        justify-content: flex-start !important;
+    }
+}
+
+/* АДАПТАЦИЯ ДЛЯ СРЕДНИХ ЭКРАНОВ */
+@media (max-width: 1200px) and (min-width: 1025px) {
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: 50px !important;
+        justify-content: flex-start !important;
+    }
+}
+
+/* АДАПТАЦИЯ ДЛЯ СРЕДНЕ-МАЛЕНЬКИХ ЭКРАНОВ */
+@media (max-width: 1100px) and (min-width: 901px) {
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: 20px !important;
+        justify-content: flex-start !important;
+    }
+}
+
+/* АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ */
+@media (max-width: 900px) and (min-width: 769px) {
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: 10px !important;
+        justify-content: flex-start !important;
+    }
+}
+
+/* АДАПТАЦИЯ ДЛЯ БОЛЬШИХ ЭКРАНОВ */
+@media (min-width: 1441px) {
+    html body .hero-content-card .image-section .social-links,
+    html body div.image-section div.social-links,
+    html body .hero-section .social-links,
+    html body .social-links {
+        left: 120px !important;
+        justify-content: flex-start !important;
+    }
+}

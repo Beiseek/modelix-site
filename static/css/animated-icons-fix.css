@@ -1,0 +1,113 @@
+/* ФИКСАЦИЯ АНИМИРОВАННЫХ ИКОНОК В КВАДРАТНЫХ КОНТЕЙНЕРАХ */
+/* СОХРАНЕНИЕ ОРИГИНАЛЬНЫХ РАЗМЕРОВ И АНИМАЦИЙ */
+
+/* ВОССТАНОВЛЕНИЕ ОРИГИНАЛЬНЫХ РАЗМЕРОВ ИКОНОК */
+.advantage-icon.modern-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue)) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+    margin-top: 5px !important;
+    position: relative !important;
+}
+
+/* ОРИГИНАЛЬНЫЕ РАЗМЕРЫ ИКОНОК ВНУТРИ */
+.advantage-icon.modern-icon i {
+    font-size: 24px !important;
+    color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: block !important;
+}
+
+/* СТАТИСТИКА - ОРИГИНАЛЬНЫЕ РАЗМЕРЫ */
+.stat-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue)) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.stat-icon i {
+    font-size: 24px !important;
+    color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: block !important;
+}
+
+/* ПРОЦЕСС - ОРИГИНАЛЬНЫЕ РАЗМЕРЫ */
+.process-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue)) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.process-icon i {
+    font-size: 24px !important;
+    color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: block !important;
+}
+
+/* ВОССТАНОВЛЕНИЕ ОРИГИНАЛЬНЫХ АНИМАЦИЙ */
+/* Убираем наши кастомные анимации, чтобы работали оригинальные */
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ - ТОЛЬКО ЦЕНТРИРОВАНИЕ */
+@media (max-width: 768px) {
+    /* На мобильных устройствах только центрируем, размеры остаются оригинальными */
+    .advantage-icon.modern-icon,
+    .stat-icon,
+    .process-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+    }
+}
+
+/* ИСКЛЮЧЕНИЯ - НЕ ПРИМЕНЯЕМ К НАВИГАЦИИ И СОЦИАЛЬНЫМ КНОПКАМ */
+.navigation .nav-link,
+.navigation .mobile-menu-btn,
+.navigation .nav-toggle-btn,
+.hero-section .social-links,
+.hero-section .social-btn,
+.mobile-menu .nav-link {
+    /* Эти элементы остаются без изменений */
+}
+
+/* ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА ОТ ПЕРЕКРЫТИЯ */
+.advantage-icon.modern-icon,
+.stat-icon,
+.process-icon {
+    z-index: 10 !important;
+    overflow: hidden !important;
+}
+
+/* ОБЕСПЕЧЕНИЕ ВИДИМОСТИ ИКОНОК */
+.advantage-icon.modern-icon i,
+.stat-icon i,
+.process-icon i {
+    z-index: 15 !important;
+    pointer-events: none !important;
+}

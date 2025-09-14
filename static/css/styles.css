@@ -506,6 +506,23 @@
         padding: 1px 1px;
     }
     
+    /* ИСПРАВЛЕНИЕ: Делаем кнопку "ЗАКАЗАТЬ ЗВОНОК" круглой на мобилке */
+    .nav-menu .nav-link.call-btn {
+        font-size: 0.4rem !important;
+        padding: 8px 12px !important;
+        border-radius: 50% !important;
+        width: 40px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
     /* ПРИНУДИТЕЛЬНАЯ ФИКСАЦИЯ ИКОНОК СОЦИАЛЬНЫХ СЕТЕЙ - ЗАБЛОКИРОВАНО! */
     .social-links,
     div.social-links,
